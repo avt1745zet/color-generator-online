@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import ColorGenerator from './components/ColorGenerator';
+import packageJson from './package.json';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Color Generator</Text>
       <ColorGenerator></ColorGenerator>
-      <Text style={styles.footer}>Copyright :&#9002;</Text>
+      <Text style={styles.footer}>Version: {packageJson.version}</Text>
       <StatusBar style="auto" />
     </View>
   );
