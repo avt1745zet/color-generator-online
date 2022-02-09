@@ -2,6 +2,7 @@
   "name": "color-generator-online",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "homepage": "https://avt1745zet.github.io/todo-list",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",

@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import ColorGenerator from './components/ColorGenerator';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Text style={styles.title}>Color Generator</Text>
+      <ColorGenerator></ColorGenerator>
+      <Text style={styles.footer}>Copyright :&#9002;</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -12,9 +15,18 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    minHeight: '100%',
+    backgroundColor: '#111111',
   },
+  title: {
+    color: '#ffffff',
+    fontSize: 40,
+    textAlign: 'center',
+    padding: 2
+  },
+  footer: {
+    color: '#ffffff',
+    textAlign: 'center',
+    padding: 2
+  }
 });
