@@ -83,7 +83,7 @@ interface ICandidateColorViewProp {
 const CandidateColorView: FC<ICandidateColorViewProp> = (props) => {
     const { colorStatus, onColorPressed } = props;
     const candidateColorList: Array<ReactElement> = colorStatus.map((colorStatu, index) => (
-        <TouchableOpacity onPress={() => onColorPressed(index)} style={{ backgroundColor: colorStatu.color, flex: 1, minWidth: 128, minHeight: 128, justifyContent: 'center', alignContent: 'center' }}>
+        <TouchableOpacity key={index} onPress={() => onColorPressed(index)} style={{ backgroundColor: colorStatu.color, flex: 1, minWidth: 128, minHeight: 128, justifyContent: 'center', alignContent: 'center' }}>
             <Text style={styles.colorCodeText}>{colorStatu.color}</Text>
             <Text style={styles.pickedText}>{colorStatu.picked ? 'Picked!' : ''}</Text>
         </TouchableOpacity>
@@ -101,8 +101,8 @@ interface IPickedColorViewProp {
 
 const PickedColorView: FC<IPickedColorViewProp> = (props) => {
     const { colors } = props;
-    const pickedColorList: Array<ReactElement> = colors.map(color => (
-        <View style={{ backgroundColor: color, width: 24, height: 24 }}>  </View>
+    const pickedColorList: Array<ReactElement> = colors.map((color, index) => (
+        <View key={index} style={{ backgroundColor: color, width: 24, height: 24 }}></View>
     ));
     return (
         <View style={{ justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row', minHeight: 24 }}>
