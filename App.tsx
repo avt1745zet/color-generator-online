@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { HelmetProvider, Helmet } from 'react-helmet-async';
+import { StyleSheet, Text, View } from 'react-native';
+import { Helmet } from 'react-helmet';
 import ColorGenerator from './components/ColorGenerator';
 import packageJson from './package.json';
 
 export default function App() {
   return (
-    <HelmetProvider>
+      <View style={styles.container}>
       <Helmet>
         <title>Random Color Generator</title>
         <meta name='description' content='A random color generator for people who are struggling to find a color.😘' />
@@ -18,13 +18,11 @@ export default function App() {
         <meta property='og:image' content={require('./assets/ogimage.png')} />
         <meta name='theme-color' content='#111111' />
       </Helmet>
-      <View style={styles.container}>
         <Text style={styles.title}>Color Generator</Text>
         <ColorGenerator></ColorGenerator>
         <Text style={styles.footer}>Version: {packageJson.version}</Text>
         <StatusBar style='auto' />
       </View>
-    </HelmetProvider>
   );
 }
 
