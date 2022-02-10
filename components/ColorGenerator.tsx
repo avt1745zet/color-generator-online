@@ -1,5 +1,5 @@
-import { FC, Fragment, ReactElement, useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { FC, Fragment, ReactElement, useEffect, useRef, useState } from 'react';
+import { Animated, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const DEFAULT_COLORS: Array<string> = [
     '#000000', '#111111', '#222222', '#333333', '#444444', '#555555', '#666666', '#777777', '#888888', '#999999'
@@ -25,9 +25,15 @@ const ColorGenerator: FC = () => {
     return (
         <Fragment>
             <PickedColorView colors={pickedColors}></PickedColorView>
+            <CandidateColorView colorStatus={colors} onColorPressed={(index) => {
+                const newColor: Array<IColorBlockStatu> = new Array<IColorBlockStatu>(...colors);
+                newColor[index].picked = !newColor[index].picked;
+                setColors(newColor);
+                updatePickedColors(newColor);
+            }}/>
             <View style={{ flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <View style={{ flex: 1, minWidth: 300 }}>
-                    <Button title='Clear unpicked color' color='black' onPress={() => {
+                    <Button title='Clear unpicked color' onPress={() => {
                         const newColor: Array<IColorBlockStatu> = new Array<IColorBlockStatu>(...colors);
                         for (let i: number = newColor.length - 1; i >= 0 && newColor.length > 1; i--) {
                             if (newColor[i].picked === false) {
@@ -37,8 +43,8 @@ const ColorGenerator: FC = () => {
                         setColors(newColor);
                     }} />
                 </View>
-                <View style={{ flex: 1, minWidth: 300 }}>
-                    <Button title='Random unpicked color' color='black' onPress={() => {
+                <View style={{ flex: 1, minWidth: 300  }}>
+                    <Button title='Random generate unpicked color' onPress={() => {
                         const newColor: Array<IColorBlockStatu> = new Array<IColorBlockStatu>(...colors);
                         newColor.forEach((colorStatu, index, array) => {
                             if (!colorStatu.picked) {
@@ -48,8 +54,8 @@ const ColorGenerator: FC = () => {
                         setColors(newColor);
                     }} />
                 </View>
-                <View style={{ flex: 1, minWidth: 300 }}>
-                    <Button title='Add new color' color='black' onPress={() => {
+                <View style={{ flex: 1, minWidth: 300}}>
+                    <Button title='Add new color' onPress={() => {
                         const newColor: Array<IColorBlockStatu> = new Array<IColorBlockStatu>(...colors);
                         newColor.push({
                             color: getRandomColor(),
@@ -59,12 +65,6 @@ const ColorGenerator: FC = () => {
                     }} />
                 </View>
             </View>
-            <CandidateColorView colorStatus={colors} onColorPressed={(index) => {
-                const newColor: Array<IColorBlockStatu> = new Array<IColorBlockStatu>(...colors);
-                newColor[index].picked = !newColor[index].picked;
-                setColors(newColor);
-                updatePickedColors(newColor);
-            }}></CandidateColorView>
         </Fragment>
     );
 }
@@ -82,16 +82,51 @@ interface ICandidateColorViewProp {
 
 const CandidateColorView: FC<ICandidateColorViewProp> = (props) => {
     const { colorStatus, onColorPressed } = props;
-    const candidateColorList: Array<ReactElement> = colorStatus.map((colorStatu, index) => (
-        <TouchableOpacity key={index} onPress={() => onColorPressed(index)} style={{ backgroundColor: colorStatu.color, flex: 1, minWidth: 128, minHeight: 128, justifyContent: 'center', alignContent: 'center' }}>
-            <Text style={styles.colorCodeText}>{colorStatu.color}</Text>
-            <Text style={styles.pickedText}>{colorStatu.picked ? 'Picked!' : ''}</Text>
-        </TouchableOpacity>
+    const colorBlockList: Array<ReactElement> = colorStatus.map((colorStatu, index) => (
+        <ColorBlock key={index} colorCode={colorStatu.color} picked={colorStatu.picked} onPressed={() => onColorPressed(index)} />
     ));
     return (
-        <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row', }}>
-            {candidateColorList}
+        <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}>
+            {colorBlockList}
         </View>
+    );
+}
+
+interface IColorBlockProp {
+    colorCode: string;
+    picked: boolean;
+    onPressed(): void;
+}
+
+const ColorBlock: FC<IColorBlockProp> = (props) => {
+    const { colorCode, picked, onPressed } = props;
+    const flexAnim: Animated.Value = useRef(new Animated.Value(0)).current;
+    const minWidthAnim: Animated.Value = useRef(new Animated.Value(24)).current;
+    useEffect(() => {
+        Animated.timing(
+            flexAnim, {
+            toValue: 1,
+            duration: 666,
+            useNativeDriver: true
+        }
+        ).start();
+    }, [flexAnim]);
+    useEffect(() => {
+        Animated.timing(
+            minWidthAnim, {
+            toValue: 128,
+            duration: 666,
+            useNativeDriver: true
+        }
+        ).start();
+    }, [minWidthAnim]);
+    return (
+        <Animated.View style={{ backgroundColor: colorCode, flex: flexAnim, minWidth: minWidthAnim, minHeight: 64 }}>
+            <TouchableOpacity style={{ flex: 1, justifyContent: 'center' }} onPress={() => onPressed()}>
+                <Text style={styles.colorCodeText}>{colorCode}</Text>
+                <Text style={styles.pickedText}>{picked ? 'Picked!' : ''}</Text>
+            </TouchableOpacity>
+        </Animated.View>
     );
 }
 
@@ -105,8 +140,8 @@ const PickedColorView: FC<IPickedColorViewProp> = (props) => {
         <View key={index} style={{ backgroundColor: color, width: 24, height: 24 }}></View>
     ));
     return (
-        <View style={{ justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row', minHeight: 24 }}>
-            <Text style={{ color: '#ffffff' }}>Picked colors: </Text>
+        <View style={{ justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 4 }}>
+            <Text style={{ color: '#ffffff', minHeight: 24 }}>Picked colors: </Text>
             {pickedColorList}
         </View>
     );
@@ -143,5 +178,5 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 3, height: 3 },
         textShadowRadius: 4,
         color: '#ffffff'
-    },
+    }
 });

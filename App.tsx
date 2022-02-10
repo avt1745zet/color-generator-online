@@ -6,7 +6,7 @@ import packageJson from './package.json';
 
 export default function App() {
   return (
-      <View style={styles.container}>
+    <View style={styles.container}>
       <Helmet>
         <title>Random Color Generator</title>
         <meta name='description' content='A random color generator for people who are struggling to find a color.😘' />
@@ -18,11 +18,11 @@ export default function App() {
         <meta property='og:image' content={require('./assets/ogimage.png')} />
         <meta name='theme-color' content='#111111' />
       </Helmet>
-        <Text style={styles.title}>Color Generator</Text>
-        <ColorGenerator></ColorGenerator>
-        <Text style={styles.footer}>Version: {packageJson.version}</Text>
-        <StatusBar style='auto' />
-      </View>
+      <Text style={styles.title}>Color Generator</Text>
+      <ColorGenerator></ColorGenerator>
+      <Text style={styles.footer}>Version: {packageJson.version}</Text>
+      <StatusBar style='auto' />
+    </View>
   );
 }
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 40,
     textAlign: 'center',
-    padding: 2
+    margin: 4
   },
   footer: {
     color: '#ffffff',
