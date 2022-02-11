@@ -28,7 +28,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: '100%',
+    flex: 1,
     backgroundColor: '#111111',
   },
   title: {
