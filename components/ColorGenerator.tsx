@@ -1,5 +1,5 @@
 import React, { FC, Fragment, ReactElement, useEffect, useRef, useState } from 'react';
-import { Animated, Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const DEFAULT_COLORS: Array<string> = [
     '#000000', '#111111', '#222222', '#333333', '#444444', '#555555', '#666666', '#777777', '#888888', '#999999'
@@ -30,7 +30,7 @@ const ColorGenerator: FC = () => {
                 newColor[index].picked = !newColor[index].picked;
                 setColors(newColor);
                 updatePickedColors(newColor);
-            }}/>
+            }} />
             <View style={{ flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <View style={{ flex: 1, minWidth: 300 }}>
                     <Button title='Clear unpicked color' onPress={() => {
@@ -43,7 +43,7 @@ const ColorGenerator: FC = () => {
                         setColors(newColor);
                     }} />
                 </View>
-                <View style={{ flex: 1, minWidth: 300  }}>
+                <View style={{ flex: 1, minWidth: 300 }}>
                     <Button title='Random generate unpicked color' onPress={() => {
                         const newColor: Array<IColorBlockStatu> = new Array<IColorBlockStatu>(...colors);
                         newColor.forEach((colorStatu, index, array) => {
@@ -54,7 +54,7 @@ const ColorGenerator: FC = () => {
                         setColors(newColor);
                     }} />
                 </View>
-                <View style={{ flex: 1, minWidth: 300}}>
+                <View style={{ flex: 1, minWidth: 300 }}>
                     <Button title='Add new color' onPress={() => {
                         const newColor: Array<IColorBlockStatu> = new Array<IColorBlockStatu>(...colors);
                         newColor.push({
@@ -86,9 +86,9 @@ const CandidateColorView: FC<ICandidateColorViewProp> = (props) => {
         <ColorBlock key={index} colorCode={colorStatu.color} picked={colorStatu.picked} onPressed={() => onColorPressed(index)} />
     ));
     return (
-        <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}>
+        <ScrollView contentContainerStyle={styles.colorBlocksContainer}>
             {colorBlockList}
-        </View>
+        </ScrollView >
     );
 }
 
@@ -178,5 +178,11 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 3, height: 3 },
         textShadowRadius: 4,
         color: '#ffffff'
+    },
+    colorBlocksContainer: {
+        flexGrow: 1,
+        flexBasis: 0,
+        flexWrap: 'wrap',
+        flexDirection: 'row'
     }
 });
