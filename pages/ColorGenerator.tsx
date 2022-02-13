@@ -1,12 +1,13 @@
 import React, { FC, Fragment, ReactElement, useEffect, useRef, useState } from 'react';
-import { Animated, Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
 
-const DEFAULT_COLORS: Array<string> = [
-    '#000000', '#111111', '#222222', '#333333', '#444444', '#555555', '#666666', '#777777', '#888888', '#999999'
+const DEFAULT_COLOR_CODES: Array<string> = [
+    '#cf1a0c', '#cf6000', '#a3cb00', '#29c900', '#03da4d', '#02cdcf', '#0140cf', '#0b03cf', '#cf006b'
 ]
 
 const ColorGenerator: FC = () => {
-    const [colors, setColors] = useState(DEFAULT_COLORS.map(color => {
+    const [colors, setColors] = useState(DEFAULT_COLOR_CODES.map(color => {
         return {
             color: color,
             picked: false
@@ -24,7 +25,7 @@ const ColorGenerator: FC = () => {
     }
     return (
         <Fragment>
-            <PickedColorView colors={pickedColors}></PickedColorView>
+            <PickedColorView colorCodes={pickedColors}></PickedColorView>
             <CandidateColorView colorStatus={colors} onColorPressed={(index) => {
                 const newColor: Array<IColorBlockStatu> = new Array<IColorBlockStatu>(...colors);
                 newColor[index].picked = !newColor[index].picked;
@@ -107,7 +108,7 @@ const ColorBlock: FC<IColorBlockProp> = (props) => {
             flexAnim, {
             toValue: 1,
             duration: 666,
-            useNativeDriver: true
+            useNativeDriver: false
         }
         ).start();
     }, [flexAnim]);
@@ -116,7 +117,7 @@ const ColorBlock: FC<IColorBlockProp> = (props) => {
             minWidthAnim, {
             toValue: 128,
             duration: 666,
-            useNativeDriver: true
+            useNativeDriver: false
         }
         ).start();
     }, [minWidthAnim]);
@@ -131,18 +132,36 @@ const ColorBlock: FC<IColorBlockProp> = (props) => {
 }
 
 interface IPickedColorViewProp {
-    colors: Array<string>;
+    colorCodes: Array<string>;
 }
 
 const PickedColorView: FC<IPickedColorViewProp> = (props) => {
-    const { colors } = props;
-    const pickedColorList: Array<ReactElement> = colors.map((color, index) => (
-        <View key={index} style={{ backgroundColor: color, width: 24, height: 24 }}></View>
+    const { colorCodes } = props;
+    const pickedColorList: Array<ReactElement> = colorCodes.map((colorCode, index) => (
+        <View key={index} style={{ backgroundColor: colorCode, width: 24, height: 24, margin: 1 }}></View>
     ));
+    const copyButton: ReactElement = (
+        <Button
+            type='clear'
+            icon={
+                <Icon name='copy' type='font-awesome-5' color='#ffffff' />
+            }
+            onPress={() => {
+                const copyText: string = colorCodes.join('\n');
+                const message: string = `${colorCodes.length} ${colorCodes.length === 1 ? 'color is' : 'colors are'} copied👌\n ` + colorCodes.join(', ');
+                navigator.clipboard
+                    .writeText(copyText)
+                    .then(() => {
+                        alert(message);
+                    });
+            }}
+        />
+    );
     return (
-        <View style={{ justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row', marginVertical: 4 }}>
-            <Text style={{ color: '#ffffff', minHeight: 24 }}>Picked colors: </Text>
+        <View style={{ justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', flexDirection: 'row', minHeight: 42 }}>
+            <Text style={{ color: '#ffffff' }}>Picked colors: </Text>
             {pickedColorList}
+            {pickedColorList.length > 0 ? copyButton : null}
         </View>
     );
 }
@@ -183,6 +202,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         flexBasis: 0,
         flexWrap: 'wrap',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     }
 });
