@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Linking, StyleSheet, Text, View } from 'react-native';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { Helmet } from 'react-helmet';
-import ColorGenerator from './components/ColorGenerator';
+import ColorGenerator from './pages/ColorGenerator';
 import packageJson from './package.json';
 
 export default function App() {
@@ -19,8 +20,19 @@ export default function App() {
         <meta name='theme-color' content='#111111' />
       </Helmet>
       <Text style={styles.title}>Color Generator</Text>
-      <ColorGenerator></ColorGenerator>
-      <Text style={styles.footer}>Version: {packageJson.version}</Text>
+      <ColorGenerator />
+      <View>
+        <Icon
+          style={{ width: 24, marginHorizontal: 'auto' }}
+          name='github'
+          type='font-awesome-5'
+          color='#ffffff'
+          onPress={() => Linking.openURL('https://github.com/avt1745zet/color-generator-online.git')}
+        />
+        <Text style={styles.footer}>
+          Version: {packageJson.version}
+        </Text>
+      </View>
       <StatusBar style='auto' />
     </View>
   );
