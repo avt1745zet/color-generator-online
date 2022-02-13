@@ -1,5 +1,6 @@
 {
   "background_color": "#ffffff",
+  "description": "A random color generator for people who are struggling to find a color.😘",
   "display": "standalone",
   "lang": "en",
   "name": "color-generator-online",

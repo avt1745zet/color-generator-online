@@ -1,23 +1,39 @@
 {
   "files": {
-    "app.js": "/color-generator-online/static/js/app.34da752f.chunk.js",
-    "app.js.map": "/color-generator-online/static/js/app.34da752f.chunk.js.map",
+    "app.js": "/color-generator-online/static/js/app.7fafcf1b.chunk.js",
+    "app.js.map": "/color-generator-online/static/js/app.7fafcf1b.chunk.js.map",
     "runtime~app.js": "/color-generator-online/static/js/runtime~app.0c24ab4f.js",
     "runtime~app.js.map": "/color-generator-online/static/js/runtime~app.0c24ab4f.js.map",
-    "static/js/2.d32537cc.chunk.js": "/color-generator-online/static/js/2.d32537cc.chunk.js",
-    "static/js/2.d32537cc.chunk.js.map": "/color-generator-online/static/js/2.d32537cc.chunk.js.map",
+    "static/js/2.8e7aa351.chunk.js": "/color-generator-online/static/js/2.8e7aa351.chunk.js",
+    "static/js/2.8e7aa351.chunk.js.map": "/color-generator-online/static/js/2.8e7aa351.chunk.js.map",
+    "fonts/AntDesign.ttf": "/color-generator-online/./fonts/AntDesign.ttf",
+    "fonts/Entypo.ttf": "/color-generator-online/./fonts/Entypo.ttf",
+    "fonts/Feather.ttf": "/color-generator-online/./fonts/Feather.ttf",
+    "fonts/FontAwesome.ttf": "/color-generator-online/./fonts/FontAwesome.ttf",
+    "fonts/FontAwesome5_Brands.ttf": "/color-generator-online/./fonts/FontAwesome5_Brands.ttf",
+    "fonts/FontAwesome5_Solid.ttf": "/color-generator-online/./fonts/FontAwesome5_Solid.ttf",
+    "fonts/Fontisto.ttf": "/color-generator-online/./fonts/Fontisto.ttf",
+    "fonts/Foundation.ttf": "/color-generator-online/./fonts/Foundation.ttf",
+    "fonts/Ionicons.ttf": "/color-generator-online/./fonts/Ionicons.ttf",
+    "fonts/MaterialCommunityIcons.ttf": "/color-generator-online/./fonts/MaterialCommunityIcons.ttf",
+    "fonts/MaterialIcons.ttf": "/color-generator-online/./fonts/MaterialIcons.ttf",
+    "fonts/SimpleLineIcons.ttf": "/color-generator-online/./fonts/SimpleLineIcons.ttf",
     "favicon-16.png": "/color-generator-online/favicon-16.png",
     "favicon-32.png": "/color-generator-online/favicon-32.png",
     "favicon.ico": "/color-generator-online/favicon.ico",
     "index.html": "/color-generator-online/index.html",
     "manifest.json": "/color-generator-online/manifest.json",
     "serve.json": "/color-generator-online/serve.json",
-    "static/js/2.d32537cc.chunk.js.LICENSE.txt": "/color-generator-online/static/js/2.d32537cc.chunk.js.LICENSE.txt",
-    "static/media/ogimage.png": "/color-generator-online/static/media/ogimage.2ddb989f.png"
+    "static/js/2.8e7aa351.chunk.js.LICENSE.txt": "/color-generator-online/static/js/2.8e7aa351.chunk.js.LICENSE.txt",
+    "static/media/bell.png": "/color-generator-online/static/media/bell.cf04af27.png",
+    "static/media/heart.png": "/color-generator-online/static/media/heart.23b5c2c0.png",
+    "static/media/ogimage.png": "/color-generator-online/static/media/ogimage.2ddb989f.png",
+    "static/media/rocket.png": "/color-generator-online/static/media/rocket.d2f3bf41.png",
+    "static/media/star.png": "/color-generator-online/static/media/star.69c71386.png"
   },
   "entrypoints": [
     "static/js/runtime~app.0c24ab4f.js",
-    "static/js/2.d32537cc.chunk.js",
-    "static/js/app.34da752f.chunk.js"
+    "static/js/2.8e7aa351.chunk.js",
+    "static/js/app.7fafcf1b.chunk.js"
   ]
 }
