@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/color-generator-online/static/js/app.7fafcf1b.chunk.js",
-    "app.js.map": "/color-generator-online/static/js/app.7fafcf1b.chunk.js.map",
+    "app.js": "/color-generator-online/static/js/app.17837d71.chunk.js",
+    "app.js.map": "/color-generator-online/static/js/app.17837d71.chunk.js.map",
     "runtime~app.js": "/color-generator-online/static/js/runtime~app.0c24ab4f.js",
     "runtime~app.js.map": "/color-generator-online/static/js/runtime~app.0c24ab4f.js.map",
     "static/js/2.8e7aa351.chunk.js": "/color-generator-online/static/js/2.8e7aa351.chunk.js",
@@ -34,6 +34,6 @@
   "entrypoints": [
     "static/js/runtime~app.0c24ab4f.js",
     "static/js/2.8e7aa351.chunk.js",
-    "static/js/app.7fafcf1b.chunk.js"
+    "static/js/app.17837d71.chunk.js"
   ]
 }
